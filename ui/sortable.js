@@ -362,8 +362,14 @@ return $.widget("ui.sortable", $.ui.mouse, {
 		this.positionAbs = this._convertPositionTo("absolute");
 
 		//Set the helper position
-		if(!this.options.axis || this.options.axis !== "y") {
-			this.helper[0].style.left = this.position.left+"px";
+		if (this.options.direction == 'rtl') {
+		  if (!this.options.axis || this.options.axis != "y") {
+			this.helper[0].style.right = (this.helper[0].parentElement.offsetWidth - this.position.left - this.helper[0].offsetWidth) + "px";
+		  }
+		} else {
+		  if (!this.options.axis || this.options.axis != "y") {
+			this.helper[0].style.left = this.position.left + "px";
+		  }
 		}
 		if(!this.options.axis || this.options.axis !== "x") {
 			this.helper[0].style.top = this.position.top+"px";
